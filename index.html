@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#000812">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>J.A.R.V.I.S.</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div id="app" data-state="idle">
+  <header class="panel top">
+    <div class="brand">STARK INDUSTRIES</div>
+    <div class="clock"><b id="time">--:--</b><span id="date"></span></div>
+  </header>
+
+  <section class="stats panel">
+    <div class="st"><span>STATUS</span><b id="status"><i class="dot"></i>NOMINAL</b></div>
+    <div class="st"><span>BATTERY</span><b id="bat">--</b><div class="bar"><u id="batb"></u></div></div>
+    <div class="st"><span>CORES</span><b id="cpu">--</b><div class="bar"><u id="cpub"></u></div></div>
+    <div class="st"><span>RAM</span><b id="ram">--</b><div class="bar"><u id="ramb"></u></div></div>
+    <div class="st"><span>NET</span><b id="net">--</b><div class="bar"><u id="netb"></u></div></div>
+  </section>
+
+  <section class="core">
+    <canvas id="globe" width="120" height="120"></canvas>
+    <div class="reactor" id="reactor">
+      <svg viewBox="0 0 200 200">
+        <circle class="r r1" cx="100" cy="100" r="96"/>
+        <circle class="r r2" cx="100" cy="100" r="86"/>
+        <circle class="r r3" cx="100" cy="100" r="74"/>
+        <circle class="r r4" cx="100" cy="100" r="62"/>
+        <circle class="r r5" cx="100" cy="100" r="50"/>
+      </svg>
+      <canvas id="wave" width="300" height="300"></canvas>
+      <div class="label"><h1>JARVIS</h1><p id="stateText"><i class="dot"></i><span>ONLINE</span></p></div>
+    </div>
+    <div class="weather panel" id="wx"><b id="wxT">--°</b><span id="wxD">Weather</span></div>
+  </section>
+
+  <section class="log panel" id="log" aria-live="polite"></section>
+
+  <section class="quick" id="quick">
+    <button data-q="Give me a brief status report.">STATUS</button>
+    <button data-q="What's the time and date?">TIME</button>
+    <button data-q="Tell me a short, witty joke.">JOKE</button>
+    <button data-q="Give me a quick briefing on today's priorities and a motivating thought.">BRIEF ME</button>
+    <button data-q="Explain something fascinating in two sentences.">FASCINATE ME</button>
+  </section>
+
+  <footer class="bar-input">
+    <button id="mute" class="ib" title="Voice on/off">🔊</button>
+    <button id="stop" class="ib" title="Stop speaking">⏹</button>
+    <input id="txt" type="text" placeholder="Speak or type…" autocomplete="off" enterkeyhint="send">
+    <button id="send" class="ib" title="Send">➤</button>
+    <button id="mic" class="mic" title="Tap to talk">🎤</button>
+    <button id="cfg" class="ib" title="Settings">⚙</button>
+  </footer>
+</div>
+
+<div id="modal" class="modal hidden">
+  <div class="panel sheet">
+    <h2>SETTINGS</h2>
+    <label>Fish Audio voice ID <small>(blank = server default)</small>
+      <input id="voiceId" type="text" placeholder="e.g. 9a9cf47702da476aa4629e2506d4a857"></label>
+    <label>Your title <input id="title" type="text" placeholder="sir"></label>
+    <label>Speech language (mic)
+      <select id="lang"><option value="en-US">English (US)</option><option value="en-GB">English (UK)</option><option value="en-AE">English (UAE)</option><option value="ar-AE">Arabic (UAE)</option><option value="hi-IN">Hindi</option><option value="ur-PK">Urdu</option></select></label>
+    <label class="row"><input id="autoSpeak" type="checkbox"> Speak responses aloud</label>
+    <label class="row"><input id="autoMic" type="checkbox"> Keep listening after JARVIS speaks</label>
+    <label id="codeRow">Access code <input id="code" type="password" autocomplete="off"></label>
+    <div class="btns">
+      <button id="testVoice">TEST VOICE</button>
+      <button id="clear">CLEAR CHAT</button>
+      <button id="install" class="hidden">INSTALL APP</button>
+      <button id="close">DONE</button>
+    </div>
+    <p id="cfgMsg" class="msg"></p>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
